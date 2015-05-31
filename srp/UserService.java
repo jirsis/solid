@@ -1,19 +1,25 @@
 public class UserService{
 
-  private DataBase _database;
-  private SmtpClient _smtpClient;
+  private UserPersist persistance;
+  private SmtpClient smtpClient;
+  private MailValidator mailValidator;
 
   public UserService(){
-    _database = new DataBase();
-    _smtpClient = new SmtpClient();
+    persistance = new UserPersist();
+    smtpClient = new SmtpClient();
+    mailValidator = new MailValidator();
   }
 
   public void register(String email, String password){
-    if (!email.contains("@"))
-      throw new ValidationException("Email is not an email!");
+    mailValidator.validate(email);
     User user = new User(email, password);
-    _database.save(user);
+
+    persistance.persist(user);
+    notificate(email);
+  }
+
+  private void notificate(String email){
     MailMessage msg = new MailMessage("mysite@nowhere.com", email);
-    _smtpClient.send(msg);
-   }
+    smtpClient.send(msg);
+  }
 }
