@@ -163,30 +163,19 @@ public void register(String email, String password){
       </section>
       <section>
         <pre><code data-trim>
-public static void parse(String scriptTextToProcess) throws IOException{
-    BufferedReader reader = new BufferedReader(new StringReader(scriptTextToProcess));
-    StringBuilder scope = new StringBuilder();
-    String line = reader.readLine();
-    while (line != null){
-      switch (line.charAt(0)){
-          case '$':
-              addToVariables(line);
-              break;
-          case '!':
-              if ("!execute".equals(line))
-                  executeScope(scope);
-              else if (line.startsWith("!custom_command"))
-                  runCustomCommand(line, scope);
-              else if ("!single_line_directive".equals(line))
-                  processDirective(line);
-              scope = new StringBuilder();
-              break;
-          default:
-              scope.append(line);
-              break;
-      }
-      line = reader.readLine();
+public void calcularBonos(){
+  for(Empleado empleado : empleados){
+    int bono = 0;
+    switch(empleado.getTipo()){
+      case PROGRAMADOR:
+        bono = empleado.getSueldo()*2;
+        break;
+      case GERENTE:
+        bono = empleado.getSueldo()*10;
+        break;
     }
+    empleado.setBono(bono);
+  }
 }
         </code></pre>
         <a href="https://github.com/jirsis/solid">ejemplo Open/Closed Principle</a>
