@@ -107,16 +107,14 @@
       </section>
       <section>
         <pre><code data-trim>
-public class UserService{
-  public void Register(string email, string password){
-    if (!email.Contains("@"))
-      throw new ValidationException("Email is not an email!");
-    User user = new User(email, password);
-    _database.Save(user);
-    MailMessage msg = new MailMessage("mysite@nowhere.com", email);
-    _smtpClient.Send(msg);
-   }
-}
+public void register(String email, String password){
+  if (!email.contains("@"))
+    throw new ValidationException("Email is not an email!");
+  User user = new User(email, password);
+  _database.save(user);
+  MailMessage msg = new MailMessage("mysite@nowhere.com", email);
+  _smtpClient.send(msg);
+ }
         </code></pre>
         <a href="https://github.com/jirsis/solid">ejemplo Single Responsability</a>
       </section>
