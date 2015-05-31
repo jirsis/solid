@@ -1,4 +1,4 @@
-# solid
+# SOLID
 Code examples about SOLID principles OOP
 
 ## Usage
