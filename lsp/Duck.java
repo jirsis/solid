@@ -1,3 +1,3 @@
 public interface Duck{
-  void swim();
+  boolean swim();
 }
