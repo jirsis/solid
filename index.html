@@ -163,29 +163,29 @@ public void register(String email, String password){
       </section>
       <section>
         <pre><code data-trim>
-public void Parse(){
-    StringReader reader = new StringReader(scriptTextToProcess);
+public static void parse(String scriptTextToProcess) throws IOException{
+    BufferedReader reader = new BufferedReader(new StringReader(scriptTextToProcess));
     StringBuilder scope = new StringBuilder();
-    string line = reader.ReadLine();
+    String line = reader.readLine();
     while (line != null){
-        switch (line[0]){
-            case '$':
-                AddToVariables(line);
-                break;
-            case '!':
-                if (line == "!execute")
-                    ExecuteScope(scope);
-                else if (line.StartsWith("!custom_command"))
-                    RunCustomCommand(line, scope);
-                else if (line == "!single_line_directive")
-                    ProcessDirective(line);
-                scope = new StringBuilder();
-                break;
-            default:
-                scope.Append(line);
-                break;
-        }
-        line = reader.ReadLine();
+      switch (line.charAt(0)){
+          case '$':
+              addToVariables(line);
+              break;
+          case '!':
+              if ("!execute".equals(line))
+                  executeScope(scope);
+              else if (line.startsWith("!custom_command"))
+                  runCustomCommand(line, scope);
+              else if ("!single_line_directive".equals(line))
+                  processDirective(line);
+              scope = new StringBuilder();
+              break;
+          default:
+              scope.append(line);
+              break;
+      }
+      line = reader.readLine();
     }
 }
         </code></pre>
