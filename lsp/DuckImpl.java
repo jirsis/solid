@@ -1,5 +1,6 @@
 public class DuckImpl implements Duck{
-  public void swim(){
+  public boolean swim(){
     System.out.println("My duck is swimming");
+    return true;
   }
 }
