@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>S.O.L.I.D.</title>
+
+<meta name="description" content="SOLID principios">
+<meta name="author" content="J. Ignacio Reta Sabarrós">
+
+<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+<link rel="stylesheet" href="bower_components/reveal.js/css/theme/beige.css" id="theme">
+</head>
+
+<body>
+  <div class="reveal">
+  <div class="slides">
+    <section>
+      <h1>S.O.L.I.D.</h1>
+      <h3>5 principios básicos de la programación orientada a objetos y el diseño</h3>
+    </section>
+
+    <section>
+      <img src="https://lostechies.com/derickbailey/files/2011/03/SOLID_6EC97F9C.jpg"/>
+    </section>
+
+    <section>
+      <h3>¿Qué ocurre cuando tenemos que modificar algo?</h3>
+    </section>
+
+    <section>
+      <img src="img/17051185.jpg"/>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ### Lo más probable es...
+       ![last jenga](img/last-jenga.png)                     <!-- .element: class="fragment" data-fragment-index="1" -->
+       #### que estemos tocando una pieza del nivel inferior <!-- .element: class="fragment" data-fragment-index="1" -->
+      </script>
+    </section>
+
+    <section>
+      <h3>¿Y ahora qué hacemos?</h3>
+      <h3 class="fragment" data-fragment-index="1"><img src="img/1375531570309.png"></h3>
+      <h4 class="fragment" data-fragment-index="1">¿Quién nos ayuda?</h4>
+    </section>
+
+    <section>
+      <h3>Nos toca remangarnos y empezar a jugar</h3>
+      <h3><img src="img/Polish-developers.jpg"/></h3>
+    </section>
+
+    <section>
+        <h3>Entonces, ¿qué es SOLID?</h3>
+        <ul class="fragment" data-fragment-index="1">
+          <li><b>S</b>iempre</li>
+          <li><b>O</b>lvido</li>
+          <li><b>L</b>o</li>
+          <li><b>I</b>nteresante del</li>
+          <li><b>D</b>esarrollo</li>
+        <ul>
+    </section>
+
+    <section>
+        <h2>No, mentira</h2>
+        <h3 class="fragment" data-fragment-index="1">S.O.L.I.D. es el acrónimo de: </h3>
+        <ul class="fragment" data-fragment-index="2">
+          <li><b>S</b>ingle Responsability</li>
+          <li><b>O</b>pen Closed</li>
+          <li><b>L</b>iskov Substitution</li>
+          <li><b>I</b>nterface Segregation</li>
+          <li><b>D</b>ependency Inversion</li>
+        <ul>
+    </section>
+
+
+    <section>
+      <section>
+        <img src="https://lostechies.com/derickbailey/files/2011/03/SingleResponsibilityPrinciple2_71060858.jpg"/>
+      </section>
+
+      <section data-markdown>
+        <script type="text/template">
+          ###Single Responsability Principle
+          _Una clase jamás debería tener más de una razón por la cual cambiar_
+
+          - Orientación al Objeto <!-- .element: class="fragment" data-fragment-index="1" -->
+          - Clases con complejo de Anillo Único (para dominarlas a todas) <!-- .element: class="fragment" data-fragment-index="2" -->
+          - Si una clase/método acepta más de una responsabilidad, tendrá más de una razón para cambiar <!-- .element: class="fragment" data-fragment-index="2" -->
+        </script>
+      </section>
+
+      <section data-markdown>
+        <script type="text/template">
+          ### Cohesión vs. Acoplamiento
+
+          ### Alta cohesión <!-- .element: class="fragment" data-fragment-index="1" -->
+          Cómo de fuertemente relacionadas y enfocadas están las distintas responsabilidades de un módulo <!-- .element: class="fragment" data-fragment-index="2" -->
+
+          ### Bajo acoplamiento <!-- .element: class="fragment" data-fragment-index="3" -->
+          El grado en el cual cada módulo depende de cada uno de los otros módulos que forman el programa <!-- .element: class="fragment" data-fragment-index="4" -->
+        </script>
+      </section>
+      <section>
+        <h1>DEMO</h1>
+      </section>
+      <section>
+        <pre><code data-trim>
+public class UserService{
+  public void Register(string email, string password){
+    if (!email.Contains("@"))
+      throw new ValidationException("Email is not an email!");
+    User user = new User(email, password);
+    _database.Save(user);
+    MailMessage msg = new MailMessage("mysite@nowhere.com", email);
+    _smtpClient.Send(msg);
+   }
+}
+        </code></pre>
+        <a href="https://github.com/jirsis/solid">ejemplo Single Responsability</a>
+      </section>
+    </section>
+
+
+    <section>
+      <section>
+        <img src="https://lostechies.com/derickbailey/files/2011/03/OpenClosedPrinciple2_2C596E17.jpg"/>
+      </section>
+
+      <section >
+          <h3>Open/Closed Principle</h3>
+          <i>Entidades software (clases, módulos, funciones, etc) deberían estar abiertas
+          para extensión pero cerradas para modificación</i>
+          <ul class="fragment" data-fragment-index="1">
+            <li>Si <b>1</b> cambio impacta a varias entidades la aplicación no está bien diseñada</li>
+            <li>Debemos diseñar módulos que nunca cambien</li>
+          </ul>
+      </section>
+
+      <section data-markdown>
+        <script type="text/template">
+          ### Abiertas para extensión vs. Cerradas para modificación
+
+          ### Abiertas para extensión <!-- .element: class="fragment" data-fragment-index="1" -->
+          Podemos hacer que la aplicación se comporte de distintas formas <!-- .element: class="fragment" data-fragment-index="2" -->
+
+          Extendiendo el comportamiento del módulo<!-- .element: class="fragment" data-fragment-index="2" -->
+        </script>
+      </section>
+      <section data-markdown>
+        <script type="text/template">
+          ### Abiertas para extensión vs. Cerradas para modificación
+
+          ### Cerradas para modificación <!-- .element: class="fragment" data-fragment-index="1" -->
+          No se necesitan hacer cambio del código fuente de dicho módulo<!-- .element: class="fragment" data-fragment-index="2" -->
+        </script>
+      </section>
+      <section>
+        <h3>¿Pero cómo hacemos esto?</h3>
+        <h2 class="fragment" data-fragment-index="1">ABSTRACCIÓN</h2>
+      </section>
+      <section>
+        <h1>DEMO</h1>
+      </section>
+      <section>
+        <pre><code data-trim>
+public void Parse(){
+    StringReader reader = new StringReader(scriptTextToProcess);
+    StringBuilder scope = new StringBuilder();
+    string line = reader.ReadLine();
+    while (line != null){
+        switch (line[0]){
+            case '$':
+                AddToVariables(line);
+                break;
+            case '!':
+                if (line == "!execute")
+                    ExecuteScope(scope);
+                else if (line.StartsWith("!custom_command"))
+                    RunCustomCommand(line, scope);
+                else if (line == "!single_line_directive")
+                    ProcessDirective(line);
+                scope = new StringBuilder();
+                break;
+            default:
+                scope.Append(line);
+                break;
+        }
+        line = reader.ReadLine();
+    }
+}
+        </code></pre>
+        <a href="https://github.com/jirsis/solid">ejemplo Open/Closed Principle</a>
+    </section>
+    </section>
+
+    <section>
+      <section>
+        <img src="https://lostechies.com/derickbailey/files/2011/03/LiskovSubtitutionPrinciple_52BB5162.jpg"/>
+      </section>
+
+      <section >
+          <h3>Liskov Subtitution Principle</h3>
+          <i>Métodos que usen referencias a clases base deben poder usar objetos de clases derivadas sin saberlo</i>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Si tenemos una clase <b>BASE</b> y dos subclases <b>SUB1</b> y <b>SUB2</b>
+              el código cliente tiene que referirse a <b>BASE</b></li>
+            <li class="fragment" data-fragment-index="2">No debemos pensar <b>SUB1</b> <i>es un</i> <b>BASE</b></li>
+            <li class="fragment" data-fragment-index="3">Tenemos que pensar en <b>SUB1</b> <i>es reeplazable por</i> una <b>BASE</b></li>
+          </ul>
+      </section>
+      <section>
+        <h1>DEMO</h1>
+      </section>
+      <section>
+        <pre><code data-trim>
+public interface Duck { void swim(); }
+
+public class DuckImpl implements Duck {
+   public void swim() { /*do something to swim*/ }
+}
+
+public class ElectricDuck implements Duck {
+   public void swim() {
+      if (!isTurnedOn)
+        return;
+      //swim logic
+   }
+}
+
+public void makeDuckSwim(Duck duck){
+    duck.swim();
+}
+        </code></pre>
+        <a href="https://github.com/jirsis/solid">ejemplo Liskov Sustitution Principle</a>
+    </section>
+    </section>
+
+    <section>
+      <section>
+        <img src="https://lostechies.com/derickbailey/files/2011/03/InterfaceSegregationPrinciple_60216468.jpg"/>
+      </section>
+      <section >
+          <h3>Interface Segregation Principle</h3>
+          <i>Los clientes no deberían estar forzados a depender de interfaces que no utilizan</i>
+          <ul>
+            <li class="fragment" data-fragment-index="1">Las interfaces <i>gordas</i> o <i>contaminadas</i> deben dividirse en varios grupos de funciones</li>
+            <li class="fragment" data-fragment-index="2">Cada grupo será implementado por distintos tipos de clientes</li>
+          </ul>
+      </section>
+      <section>
+        <h1>DEMO</h1>
+      </section>
+      <section>
+        <pre><code data-trim>
+public interface Animal {
+  void alimentar();
+  void acariciar();
+}
+
+public class Perro implements Animal {
+   public void alimentar() { /*alimentando al perro*/ }
+   public void acariciar() { /*acariciando al perro*/}
+}
+        </code></pre>
+        <a href="https://github.com/jirsis/solid">ejemplo Liskov Sustitution Principle</a>
+    </section>
+    <section>
+      <pre><code data-trim>
+public class Escorpion implements Animal {
+ public void alimentar() { /*alimentando al escorpión*/ }
+ public void acariciar() {
+   /*Estás nominado a un premio Darwin y posiblemente lo ganes*/
+ }
+}
+      </code></pre>
+      <a href="https://github.com/jirsis/solid">ejemplo Liskov Sustitution Principle</a>
+    </section>
+    </section>
+
+    <section>
+      <section>
+        <img src="https://lostechies.com/derickbailey/files/2011/03/DependencyInversionPrinciple_0278F9E2.jpg"/>
+      </section>
+      <section >
+          <h3>Dependency Inversion Principle</h3>
+          <i>Módulos de alto nivel no deben depender de módulos de bajo nivel.
+            Ambos deben depender de abstracciones.</i></br>
+          <i class="fragment" data-fragment-index="1">Abstracciones no deben depender de detalles.
+            Los detalles deben depender de las abstracciones</i>
+      </section>
+      <section>
+        <h3>¿Cómo lo hacemos?</h3>
+        <ul class="fragment" data-fragment-index="1">
+          <li>Inyección de dependencias</li>
+          <li>IoC (Inversión de control)</li>
+        </ul>
+      </section>
+      <section>
+        <h1>DEMO</h1>
+      </section>
+      <section>
+        <pre><code data-trim>
+public class Volvo {
+  private B20 engine;
+  public Volvo (){engine = new B20()}
+}
+        </code></pre>
+        <a href="https://github.com/jirsis/solid">ejemplo Dependency Inversion Principle</a>
+      </section>
+
+    </section>
+
+    <section>
+      <h3>¿Preguntas?</h3>
+      <h1>¿?</h1>
+    </section>
+
+    <section>
+      <h2>Referencias</h2>
+      <ul>
+        <li><a href="https://lostechies.com/derickbailey/2009/02/11/solid-development-principles-in-motivational-pictures/">Imágenes SOLID principles</a> </li>
+
+      </ul>
+    </section>
+
+  </div>
+  </div>
+  <script type="text/javascript" src="bower_components/reveal.js/lib/js/head.min.js"></script>
+  <script type="text/javascript" src="bower_components/reveal.js/js/reveal.js"></script>
+
+  <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+          controls: true,
+          progress: true,
+          history: true,
+          keyboard: true,
+          center: true,
+          hideAddressBar: true,
+
+          theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+          transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/none
+
+          dependencies: [
+  					{ src: 'bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  					{ src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  					{ src: 'bower_components/reveal.js/plugin/notes/notes.js' }
+  				]
+      });
+  </script>
+</body>
+</html>
