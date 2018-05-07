@@ -1,0 +1,10 @@
+{
+  "name": "solid-keynote",
+  "version": "1.0.0",
+  "description": "Explicación de los 5 principios SOLID",
+  "author": "Iñaki Reta Sabarrós",
+  "license": "MIT",
+  "dependencies": {
+    "reveal.js": "^3.6.0"
+  }
+}
