@@ -1,5 +1,7 @@
 # SOLID
-Code examples about SOLID principles OOP
+Code examples about SOLID principles OOP.
+
+This examples are the code to follow [this simple keynote](https://jirsis.github.io/solid/#/)
 
 ## Usage
 ```java
@@ -11,4 +13,4 @@ java <Principle>Laucher
 ## Solution
 ```
 git checkout solutions
-```
+``

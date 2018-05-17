@@ -3,6 +3,11 @@ public class LiskovSubstitutionLauncher{
     DuckImpl duck = new DuckImpl();
     ElectronicDuck cyborgDuck = new ElectronicDuck();
     duck.swim();
-    cyborgDuck.swim(); 
+
+    if(!cyborgDuck.swim()){
+      System.out.println("My cyborgDuck is off");
+      cyborgDuck.enableTurnedOn();
+      cyborgDuck.swim();
+    }
   }
 }
