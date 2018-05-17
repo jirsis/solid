@@ -1,14 +1,10 @@
-public class B20 implements Engine{
+public class B20{
   private String cc;
   public B20(){
     cc="1986cc";
   }
 
-  public String getCC(){
-    return cc;
-  }
-  
   public String toString(){
-    return getCC();
+    return cc;
   }
 }

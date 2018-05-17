@@ -1,4 +1,4 @@
-public class Perro implements Animal, Mascota{
+public class Perro implements Animal{
   public void alimentar(){
     System.out.println("A mi perro le doy el mejor pienso del mundo");
   }

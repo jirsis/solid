@@ -1,8 +1,8 @@
 public class Volvo{
-  private Engine engine;
+  private B20 engine;
 
-  public Volvo(Engine engine){
-    this.engine = engine;
+  public Volvo(){
+    engine = new B20();
   }
 
   public void drive(){

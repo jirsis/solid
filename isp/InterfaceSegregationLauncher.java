@@ -1,10 +1,11 @@
 public class InterfaceSegregationLauncher{
   public static void main(String args []){
-    Perro laica = new Perro();
+    Animal laica = new Perro();
     laica.alimentar();
     laica.acariciar();
-
-    Escorpion escorpion = new Escorpion();
+    
+    Animal escorpion = new Escorpion();
     escorpion.alimentar();
+    escorpion.acariciar();
   }
 }

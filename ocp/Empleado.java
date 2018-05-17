@@ -1,28 +1,36 @@
-public abstract class Empleado{
+public class Empleado{
   private String nombre;
   private int sueldo;
   private int bono;
+  private TipoEmpleado tipo;
 
-  public Empleado(String nombre, int sueldo){
+  public Empleado(TipoEmpleado tipo, String nombre){
+    this.tipo = tipo;
     this.nombre = nombre;
-    this.sueldo = sueldo;
+    if(tipo == TipoEmpleado.PROGRAMADOR){
+      sueldo = 100;
+    }else{
+      sueldo = 150;
+    }
   }
 
-  public void setBono(int bono){
-    this.bono = bono;
+  public TipoEmpleado getTipo(){
+    return tipo;
+  }
+
+  public int getSueldo(){
+    return sueldo;
   }
 
   public int getBono(){
     return bono;
   }
 
-  public int getSueldo(){
-    return sueldo;
+  public void setBono(int bono){
+    this.bono = bono;
   }
-  
+
   public String toString(){
     return String.format("Empleado: %s [%d+%d]", nombre, sueldo, bono);
   }
-
-  abstract void calcularBono();
 }
