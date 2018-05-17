@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class EmpleadoServicio{
+public class EmpleadoServicio {
 
   private List<Empleado> empleados;
 
@@ -10,16 +10,8 @@ public class EmpleadoServicio{
 
   public void calcularBonos(){
     for(Empleado empleado : empleados){
-      int bono = 0;
-      switch(empleado.getTipo()){
-        case PROGRAMADOR:
-          bono = empleado.getSueldo()*2;
-          break;
-        case GERENTE:
-          bono = empleado.getSueldo()*10;
-          break;
-      }
-      empleado.setBono(bono);
+      empleado.calcularBono();
+      System.out.println(empleado);
     }
   }
 }

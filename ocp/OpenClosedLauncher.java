@@ -1,30 +1,20 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class OpenClosedLauncher{
-  public static void main (String args[]){
-    List<Empleado> empleados = createEmpleados();
-    EmpleadoServicio servicio = new EmpleadoServicio(empleados);
-    System.out.println("Antes de bonus");
-    printEmpleados(empleados);
-    System.out.println("Despues de bonus");
-    servicio.calcularBonos();
-    printEmpleados(empleados);
-  }
+public class OpenClosedLauncher {
+   public static void main(String args[]){
+     List<Empleado> empleados = createEmpleados();
+     EmpleadoServicio servicio = new EmpleadoServicio(empleados);
+     servicio.calcularBonos();
+   }
 
-  private static void printEmpleados(List<Empleado> empleados){
-    for(Empleado empleado: empleados){
-      System.out.println(empleado);
-    }
-  }
-
-  private static List<Empleado> createEmpleados(){
-    List<Empleado> empleados = new ArrayList<Empleado>();
-    empleados.add(new Empleado(TipoEmpleado.PROGRAMADOR, "Guillermo"));
-    empleados.add(new Empleado(TipoEmpleado.GERENTE, "David"));
-    empleados.add(new Empleado(TipoEmpleado.PROGRAMADOR, "Jacinto"));
-    empleados.add(new Empleado(TipoEmpleado.GERENTE, "Maria"));
-    empleados.add(new Empleado(TipoEmpleado.PROGRAMADOR, "Laura"));
-    return empleados;
-  }
+   private static List<Empleado> createEmpleados(){
+     List<Empleado> empleados = new ArrayList<Empleado>();
+     empleados.add(new Programador("Guillermo"));
+     empleados.add(new Gerente("David"));
+     empleados.add(new Programador("Jacinto"));
+     empleados.add(new Gerente("Maria"));
+     empleados.add(new Programador("Laura"));
+     return empleados;
+   }
 }

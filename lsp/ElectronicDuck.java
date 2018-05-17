@@ -1,13 +1,15 @@
 public class ElectronicDuck implements Duck{
   private boolean isTurnedOn = false;
-
-  public void enableTurnedOn(){
-    isTurnedOn = true;
+  public void swim(){
+      if (!isTurnedOn){
+        enableTurnedOn();
+        swim();
+      }else{
+        System.out.println("My electronic duck is swimming");
+      }
   }
-  public boolean swim(){
-      if (!isTurnedOn)
-        return false;
-      System.out.println("My electronic duck is swimming");
-      return true;
+
+  private void enableTurnedOn(){
+    isTurnedOn = true;
   }
 }
